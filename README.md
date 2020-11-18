@@ -7,8 +7,11 @@ You'll need to know your raspberry pi model. We will use OSMC as the base OS. I'
 I downloaded the image here:
 https://osmc.tv/download/
 
-And installed with:
-sudo dd if=/Users/lorenrisker/Downloads/OSMC_TGT_rbp2_20201019.img of=/dev/rdisk2 bs=1m conv=sync && sync
+I got the following command from the osmc_installer_log.txt and ran it. This will byte for byte copy the source (if) over the output source (of). So be careful with the command, and be sure to know that whatever is on the destination disk will be destroyed. This is intended to be written to a microSD card that can be totally overwritten.
+
+sudo dd if=/path/to/img_file of=/dev/destinationdisk bs=1m conv && sync
+ex:
+sudo dd if=/Users/myusername/Downloads/OSMC_TGT_rbp2_20201019.img of=/dev/rdisk2 bs=1m conv=sync && sync
 
 # Basic Configuration of OSMC:
 You'll need a keyboard for initial setup. Make sure to enable ssh and note the IP address. Login will be osmc / osmc (now that you know the defaults, change it first thing with the passwd command).
