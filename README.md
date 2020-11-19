@@ -16,6 +16,9 @@ sudo dd if=/Users/myusername/Downloads/OSMC_TGT_rbp2_20201019.img of=/dev/rdisk2
 # Basic Configuration of OSMC:
 You'll need a keyboard for initial setup. Make sure to enable ssh and note the IP address. Login will be osmc / osmc (now that you know the defaults, change it first thing with the passwd command).
 
+Next install some useful command line programs:
+sudo apt install git vim rsync
+
 # Copying video files to play
 make a folder for the videos (this step should be done automatically by plmaker, but haven't written it in yet)
 mkdir -p ~/ooftv/videos
@@ -24,9 +27,6 @@ make a folder for the playlists (this step should be done automatically by plmak
 /home/osmc/ooftv/playlists/
 
 note: you need to have a video in promos for plmaker to work (script should check if folder is empty but doesn't currently)
-
-install rsync (if you want to use rsync to copy)
-sudo apt install rsync
 
 copy videos with rsync (example:)
 rsync -av sourcefolder/ osmc@[serveraddress]:/destinationfolder/
@@ -38,9 +38,6 @@ create a directory to keep the scripts
 sudo mkdir -p /usr/local/bin/ooftv
 change the owner so osmc can write to the sourcefolder
 sudo chown -R osmc /usr/local/bin/ooftv
-
-install git
-sudo apt install git
 
 cd /usr/local/bin/ooftv
 git init
