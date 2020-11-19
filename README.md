@@ -19,35 +19,19 @@ You'll need a keyboard for initial setup. Make sure to enable ssh and note the I
 Next install some useful command line programs:
 sudo apt install git vim rsync
 
-# Copying video files to play
-make a folder for the videos (this step should be done automatically by plmaker, but haven't written it in yet)
-mkdir -p ~/ooftv/videos
+Now. change to the ooftv folder and sync with git.
+mkdir -p /usr/local/bin/ooftv && sudo chown -R osmc /usr/local/bin/ooftv && cd /usr/local/bin/ooftv && git init && git remote add origin https://github.com/ooftv/oof-pi-stream && git pull origin main
 
-make a folder for the playlists (this step should be done automatically by plmaker, but haven't written it in yet)
-/home/osmc/ooftv/playlists/
+# Copying video files to play
+make a folder for the videos (this step will be done automatically by plmaker, but usually you'd probably copy media over before running plmaker and you'll need a place to put it)
+
+mkdir -p ~/ooftv/videos
 
 note: you need to have a video in promos for plmaker to work (script should check if folder is empty but doesn't currently)
 
 copy videos with rsync (example:)
 rsync -av sourcefolder/ osmc@[serveraddress]:/destinationfolder/
-rsync -av live/ osmc@[192.168.0.202]:/home/osmc/ooftv/videos/live/
-
-# Install scripts
-
-create a directory to keep the scripts
-sudo mkdir -p /usr/local/bin/ooftv
-change the owner so osmc can write to the sourcefolder
-sudo chown -R osmc /usr/local/bin/ooftv
-
-cd /usr/local/bin/ooftv
-git init
-git remote add origin https://github.com/ooftv/oof-pi-stream
-
-run plmaker to make the playlists
-./plmaker
-
-run mainplaylist to play the videos
-./mainplaylist
+rsync -av videos/ osmc@[192.168.0.202]:/home/osmc/ooftv/videos/
 
 if everything worked, then automate
 
