@@ -30,10 +30,14 @@ othervideos=$basePath'/othervideos'
 promos=$basePath'/promos'
 # OOF Series
 series=$basePath'/series'
+# Make sure the folder exist
+mkdir $musicvideos $livevideos $othervideos $promos $series
+
 
 # Playlist Path
 #listPath='/tmp/ooftv'
 listPath=$basePath'/playlists'
+mkdir -p $listPath
 
 echo "Let's check our paths, Do they look ok?" >> $log
 echo $musicvideos >> $log
