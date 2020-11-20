@@ -36,3 +36,13 @@ rsync -av videos/ osmc@[192.168.0.202]:/home/osmc/ooftv/videos/
 if everything worked, then automate
 
 # Automate scripts
+
+I used cron. I know there are preferred ways, but this is easy and it works. Make sure you have cron installed:
+
+sudo apt install cron
+
+Add these lines:
+
+@reboot /usr/local/bin/ooftv/startstream # runs the stream after a reboot
+5 4 * * * /usr/local/bin/ooftv/plmaker # runs plmaker at 4:05 am, refreshes the playlist rdaily
+25 4 * * * /usr/local/bin/ooftv/startstream # restarts the stream with the new playlist
