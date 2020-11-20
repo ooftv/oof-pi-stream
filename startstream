@@ -1,9 +1,10 @@
 #!/bin/bash
 
-now=$(date +"%Y %b %d %H:%M:%S")
-echo "Stream Launched at $now" >> /home/osmc/ooftv/logs/oofstream.log
+sleep 40 # this give the system time to boot before it attempts to play the videos - otherwise it will fail on startup
 
-sleep 40 #if you have to launch at startup, put this in to wait for eveything to load
+now=$(date +"%Y %b %d %H:%M:%S")
+echo "Stream Launched at $now" >> /tmp/oofstream.log
+
 
 #PLAY A FOLDER:
 #kodi-send --action=PlayerControl"(repeatall)"
