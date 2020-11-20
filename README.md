@@ -17,7 +17,7 @@ sudo dd if=/Users/myusername/Downloads/OSMC_TGT_rbp2_20201019.img of=/dev/rdisk2
 You'll need a keyboard for initial setup. Make sure to enable ssh and note the IP address. Login will be osmc / osmc (now that you know the defaults, change it first thing with the passwd command).
 
 Next install some useful command line programs:
-sudo apt install git vim rsync
+sudo apt install git vim rsync cron
 
 Now. change to the ooftv folder and sync with git.
 mkdir -p /usr/local/bin/ooftv && sudo chown -R osmc /usr/local/bin/ooftv && cd /usr/local/bin/ooftv && git init && git remote add origin https://github.com/ooftv/oof-pi-stream && git pull origin main
@@ -36,3 +36,9 @@ rsync -av videos/ osmc@[192.168.0.202]:/home/osmc/ooftv/videos/
 if everything worked, then automate
 
 # Automate scripts
+(should probably set this up as a service, but cron still works)
+osmc does not ship with cron, so need to install it first
+crontab -e
+add these lines:
+2 2 * * * /usr/local/bin/ooftv/plmaker &> /tmp/plmaker.out
+7 4 * * * /usr/local/bin/ooftv/startsteam &> /tmp/startstream.out
